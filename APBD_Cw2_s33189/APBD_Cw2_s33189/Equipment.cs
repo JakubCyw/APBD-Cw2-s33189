@@ -6,6 +6,7 @@ public abstract class Equipment
     public string Name { get; set; }
     public bool IsAvailable { get; set; } = true;
     public string SerialNumber { get; set; }
+    public string Status { get; set; } = "Available";
 
     protected Equipment(string name, string sn)
     {
