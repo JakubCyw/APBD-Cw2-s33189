@@ -40,12 +40,13 @@ public class Serwis
 
     public void Zwrot(Guid EquipmentId)
     {
-        var wypozyczenie = _wypozyczenia.FirstOrDefault(w => w.Id == EquipmentId &&  !w.CzyZwrocona)
+        var wypozyczenie = _wypozyczenia.FirstOrDefault(w => w.Equipment.Id == EquipmentId &&  !w.CzyZwrocona)
             ?? throw new Exception("Nie znaleziono aktywnego wypożyczenia dla tego sprzętu");
 
         wypozyczenie.DataZwrotu = DateTime.Now;
         wypozyczenie.Equipment.IsAvailable = true;
         wypozyczenie.Equipment.Status = "Available";
+        Console.WriteLine("Zwrócono " + wypozyczenie.Equipment);
 
         if (wypozyczenie.DataZwrotu > wypozyczenie.TerminZwrotu)
         {

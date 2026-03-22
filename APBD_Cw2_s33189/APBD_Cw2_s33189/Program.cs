@@ -21,5 +21,40 @@ public class Program
         
         serwis.AddUser(student);
         serwis.AddUser(pracownik);
+        
+        Console.WriteLine("Wypożyczenie");
+        try
+        {
+            serwis.Wypozycz(student, laptop, 7);
+            Console.WriteLine($"Student {student.Name} wypożyczył {laptop.Name}");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Błąd: " + e.Message);
+        }
+        
+        Console.WriteLine("Wypożyczenie z niepowodzeniem");
+        try
+        {
+            serwis.Wypozycz(pracownik, laptop, 3);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Błąd: " + e.Message);
+        }
+        
+        Console.WriteLine("Zwrot sprzetu");
+        try
+        {
+            serwis.Zwrot(laptop.Id);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        
+        Console.WriteLine("Raport");
+        serwis.Raport();
     }
 }
