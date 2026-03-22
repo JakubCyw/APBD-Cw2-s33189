@@ -61,4 +61,17 @@ public class Serwis
         equipment.IsAvailable = false;
         equipment.Status = "W serwisie";
     }
+    
+    public List<Wypozyczenie> WypozyczeniaUsera(Guid userId) =>
+        _wypozyczenia.Where(w => w.User.Id == userId && !w.CzyZwrocona).ToList();
+    
+    public List<Wypozyczenie> Przeterminowane() =>
+        _wypozyczenia.Where(w => !w.CzyZwrocona && DateTime.Now > w.TerminZwrotu).ToList();
+
+    public void Raport()
+    {
+        Console.WriteLine($"Suma sprzetów: {_equipments.Count}");
+        Console.WriteLine($"Liczba wypożyczeń: {_equipments.Count(e => !e.IsAvailable)}");
+        Console.WriteLine($"Liczba użytkowników: {_users.Count}");
+    }
 }
