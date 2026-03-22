@@ -8,5 +8,5 @@ public class Wypozyczenie
     public DateTime DataWypozyczenia { get; set; }
     public DateTime? DataZwrotu { get; set; }
     public DateTime TerminZwrotu { get; set; }
-    public bool CzyZwrocona { get; set; }
+    public bool CzyZwrocona => DataZwrotu.HasValue;
 }
